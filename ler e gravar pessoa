@@ -1,0 +1,52 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package mtp;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class MainPessoa {
+
+    public static void main(String[] args) {
+
+        Scanner in = new Scanner(System.in);
+        ArrayList<Pessoa> arr = new ArrayList<>();
+        String operacao;
+        String nome = "";
+        Integer idade = 0;
+        String end = "";
+        Integer continuar = 0;
+        do {
+            System.out.println("Digite a operação desejada (G = Gravação ou L = Leitura):");
+            operacao = in.next();
+
+            Pessoa pess = new Pessoa();
+
+            if (operacao.equalsIgnoreCase("G")) {
+                System.out.println("Digite o nome: ");
+                nome = in.next();
+
+                System.out.println("Digite a idade: ");
+                idade = in.nextInt();
+
+                System.out.println("Digite o endereço: ");
+                end = in.next();
+
+                pess.setNome(nome);
+                pess.setIdade(idade);
+                pess.setEnd(end);
+
+            } else if (operacao.equalsIgnoreCase("L")) {
+                for (int i = 0; i < arr.size(); i++) {
+                    arr.get(i);
+                }
+            }
+            System.out.println("Para continuar digite 1: ");
+            continuar = in.nextInt();
+
+        } while (continuar == 1);
+    }
+}
