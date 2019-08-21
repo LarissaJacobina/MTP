@@ -23,7 +23,7 @@ public class MainPessoa {
             System.out.println("Digite a operação desejada (G = Gravação ou L = Leitura):");
             operacao = in.next();
 
-            Pessoa pess = new Pessoa();
+            ;
 
             if (operacao.equalsIgnoreCase("G")) {
                 System.out.println("Digite o nome: ");
@@ -35,9 +35,12 @@ public class MainPessoa {
                 System.out.println("Digite o endereço: ");
                 end = in.next();
 
+                Pessoa pess = new Pessoa();
                 pess.setNome(nome);
                 pess.setIdade(idade);
                 pess.setEnd(end);
+                
+                arr.add(pess);
 
             } else if (operacao.equalsIgnoreCase("L")) {
                 for (int i = 0; i < arr.size(); i++) {
