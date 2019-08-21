@@ -1,0 +1,42 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package mtp;
+
+
+public class Pessoa {
+    private String nome = "";
+    private Integer idade = 0;
+    private String end = "";
+
+
+    // Nome    
+    public String getNome() {
+        return this.nome;
+    }
+    
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
+    //Idade
+     public Integer getIdade() {
+        return this.idade;
+    }
+    
+    public void setIdade(Integer idade) {
+        this.idade = idade;
+    }
+    
+    //Endereço
+    public String getEnd() {
+        return this.end;
+    }
+    
+    public void setEnd(String end) {
+        this.end = end;
+    }
+}
+
