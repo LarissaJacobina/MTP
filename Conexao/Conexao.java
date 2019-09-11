@@ -111,22 +111,38 @@ public class Conexao {
         }
     }
     
-     public int login(String email, String senha){
+    public String login(String email, String senha){
         try {
             PreparedStatement ps = this.conn
-                    .prepareStatement("SELECT id FROM Pessoa WHERE email = ? AND senha = ?;");
+                    .prepareStatement("SELECT id, nome FROM pessoa WHERE email = ? AND senha = ?;");
             ps.setString(1, email);
             ps.setString(2, senha);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                return rs.getInt(1);
+                return rs.getString(2);
             } else {
-                return 0;
+                return null;
             }
         } catch (Exception e) {
-            e.getMessage()
+            e.getMessage();
+            return null;
         }
-     }
+    }
     
+    public void cadastrar(String nome, String email, String local, String senha){
+        try {
+            PreparedStatement st = this.conn.prepareStatement("INSERT INTO pessoa (nome, email, local, senha) VALUES (?)");
+            st.setString(1, nome);
+            st.setString(2, email);
+            st.setString(3, local);
+            st.setString(4, senha);
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+  
+        }
+    }
 
 }
+
