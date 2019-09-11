@@ -30,7 +30,6 @@ public class Cadastro extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        Login = new javax.swing.JLabel();
         Nome = new javax.swing.JLabel();
         Mail = new javax.swing.JLabel();
         Local = new javax.swing.JLabel();
@@ -38,7 +37,6 @@ public class Cadastro extends javax.swing.JFrame {
         ConfSenha = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        TxLogin = new javax.swing.JTextField();
         TxNome = new javax.swing.JTextField();
         TxMail = new javax.swing.JTextField();
         TxLocal = new javax.swing.JTextField();
@@ -50,8 +48,6 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel1.setText("CADASTRO");
 
         jSeparator1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        Login.setText("Login:");
 
         Nome.setText("Nome:");
 
@@ -98,29 +94,27 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addComponent(ConfSenha)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(0, 9, Short.MAX_VALUE)
-                                        .addComponent(TxLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(TxConfSenha)))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(35, 35, 35)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TxConfSenha)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(TxLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Login)
                                     .addComponent(Nome)
                                     .addComponent(Mail))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(TxNome)
-                                    .addComponent(TxLogin)
                                     .addComponent(TxMail)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(Senha)
@@ -136,10 +130,6 @@ public class Cadastro extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Login)
-                    .addComponent(TxLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Nome)
                     .addComponent(TxNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -159,7 +149,7 @@ public class Cadastro extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ConfSenha)
                     .addComponent(TxConfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -174,6 +164,10 @@ public class Cadastro extends javax.swing.JFrame {
     }                                      
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        Conexao con = new Conexao();
+        con.conectar();
+        
+        cad = con.cadastrar(TxNome.getText(), TxMail.getText(), TxLocal.getText(), TxSenha.getText());
         
     }                                        
 
@@ -215,13 +209,11 @@ public class Cadastro extends javax.swing.JFrame {
     // Variables declaration - do not modify                     
     private javax.swing.JLabel ConfSenha;
     private javax.swing.JLabel Local;
-    private javax.swing.JLabel Login;
     private javax.swing.JLabel Mail;
     private javax.swing.JLabel Nome;
     private javax.swing.JLabel Senha;
     private javax.swing.JTextField TxConfSenha;
     private javax.swing.JTextField TxLocal;
-    private javax.swing.JTextField TxLogin;
     private javax.swing.JTextField TxMail;
     private javax.swing.JTextField TxNome;
     private javax.swing.JTextField TxSenha;
@@ -231,3 +223,4 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration                   
 }
+
