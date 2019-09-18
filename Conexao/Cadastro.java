@@ -5,6 +5,8 @@
  */
 package mtp;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ifg
@@ -40,8 +42,8 @@ public class Cadastro extends javax.swing.JFrame {
         TxNome = new javax.swing.JTextField();
         TxMail = new javax.swing.JTextField();
         TxLocal = new javax.swing.JTextField();
-        TxSenha = new javax.swing.JTextField();
-        TxConfSenha = new javax.swing.JTextField();
+        pass = new javax.swing.JPasswordField();
+        passConf = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,17 +96,15 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addComponent(ConfSenha)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGap(0, 84, Short.MAX_VALUE)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(35, 35, 35)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TxConfSenha)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(TxLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(18, 18, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(passConf)
+                                    .addComponent(TxLocal, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -118,8 +118,8 @@ public class Cadastro extends javax.swing.JFrame {
                                     .addComponent(TxMail)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(Senha)
-                                .addGap(18, 18, 18)
-                                .addComponent(TxSenha)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(pass)))))
                 .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
@@ -144,12 +144,12 @@ public class Cadastro extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Senha)
-                    .addComponent(TxSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ConfSenha)
-                    .addComponent(TxConfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(passConf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -164,11 +164,18 @@ public class Cadastro extends javax.swing.JFrame {
     }                                      
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        if (new String (passConf.getPassword()).equalsIgnoreCase(new String (pass.getPassword()))){
+            
         Conexao con = new Conexao();
         con.conectar();
         
-        cad = con.cadastrar(TxNome.getText(), TxMail.getText(), TxLocal.getText(), TxSenha.getText());
+        con.cadastrar(TxNome.getText(), TxMail.getText(), TxLocal.getText(), new String (pass.getPassword()));
         
+        JOptionPane.showMessageDialog(null, "Cadastro Efetuado com Sucesso!");
+        
+        } else {
+            JOptionPane.showMessageDialog(null, "Senhas diferentes!");
+        }
     }                                        
 
     /**
@@ -212,15 +219,14 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JLabel Mail;
     private javax.swing.JLabel Nome;
     private javax.swing.JLabel Senha;
-    private javax.swing.JTextField TxConfSenha;
     private javax.swing.JTextField TxLocal;
     private javax.swing.JTextField TxMail;
     private javax.swing.JTextField TxNome;
-    private javax.swing.JTextField TxSenha;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPasswordField pass;
+    private javax.swing.JPasswordField passConf;
     // End of variables declaration                   
 }
-
