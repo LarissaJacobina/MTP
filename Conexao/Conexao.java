@@ -131,7 +131,7 @@ public class Conexao {
     
     public void cadastrar(String nome, String email, String local, String senha){
         try {
-            PreparedStatement st = this.conn.prepareStatement("INSERT INTO pessoa (nome, email, local, senha) VALUES (?)");
+            PreparedStatement st = this.conn.prepareStatement("INSERT INTO pessoa (nome, email, local, senha) VALUES (?, ?, ?, ?)");
             st.setString(1, nome);
             st.setString(2, email);
             st.setString(3, local);
@@ -145,4 +145,3 @@ public class Conexao {
     }
 
 }
-
